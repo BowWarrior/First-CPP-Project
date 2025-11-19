@@ -5,7 +5,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 TARGET = program.exe
 
 #name of the c++ file:
-SRC = firstC++Program.cpp
+SRC = firstCPP.cpp
 
 all: $(TARGET)
 
