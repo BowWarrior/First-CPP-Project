@@ -53,13 +53,18 @@ void Question3(){
     cout << "enter integer amount of how many doubles you want in the array!" << endl;
     cin >> size;
 
+    //for our specific assignment, but I like the input more:
+    //size = 10;
 
     double** d_array = new double*[size];
     for(int i = 0; i < size; i++){
         d_array[i] = new double;
-        
+
         cout << "enter new double: " << endl;
         cin >> *(d_array[i]);
+        
+        //for our specific assignment, but I like the input more:
+        // *(d_array[i]) = 1.0;
     }
 
 
