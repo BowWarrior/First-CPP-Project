@@ -1,15 +1,44 @@
 #include <string>
+#include <cstring>
 #include <iostream>
 using namespace std;
+#include <cstddef>
+#include <cctype>
 
 void Question1();
 void Question2();
 void Question3();
+int Question1B();
+bool* Question2B();
+void Question3B(char* ptr);
+int* Question4B(const string& s);
 
 int main() {
     //Question1();
     //Question2();
-    Question3();
+    //Question3();
+    //cout << Question1B() << endl;
+    //cout << Question2B() << endl;
+
+
+/*  char str[] = "Hello, World!";
+    Question3B(str);
+    cout << str << endl; // Output the reversed string
+*/
+
+    string input;
+    cout << "Enter a string: ";
+    getline(cin, input);
+    int* counts = Question4B(input);
+    for (int i = 0; i < 26; i++) {
+        if (counts[i] > 0) {
+            char letter = 'a' + i;
+            cout << letter << ": " << counts[i] << endl;
+        }
+    }
+
+    delete[] counts;
+
 
 
     return 0;
@@ -81,4 +110,78 @@ void Question3(){
     }
     delete[] d_array;
     
+}
+
+
+// ----------------------- SECTION B -------------------------------------//
+int Question1B(){
+    int array[] = {1, 2, 3, -1, 4, 5};
+    int count = 0;
+    if(std::size(array) != 0){
+        for(int i = 0; i < int(std::size(array)); i++){
+            if(array[i] < 0){
+                //do nothing lol
+            } else{
+                count += array[i];
+            }        
+        }
+    }
+    
+    return count;
+}
+
+
+bool* Question2B() {
+    bool* array = new bool[1000];
+
+    for (int i = 0; i < 1000; i++) {
+        array[i] = true;
+
+        for (int j = 2; j * j <= i; j++) { 
+            if (i % j == 0) {
+                array[i] = false;
+                break;
+            }
+        }
+
+        if (array[i] && i >= 2) {
+            cout << i << " is prime" << endl;
+        }
+    }
+    return array;
+}
+
+
+void Question3B(char* ptr) {
+    int len = strlen(ptr);//gets length of C-string
+    int start = 0;
+    int end = len - 1;
+
+    // swap characters from both ends
+    while (start < end) {
+        char temp = ptr[start];
+        ptr[start] = ptr[end];
+        ptr[end] = temp;
+
+        start++;
+        end--;
+    }
+}
+
+
+int* Question4B(const string& s) {
+    int* freq = new int[26];
+
+    for (int i = 0; i < 26; i++) {
+        freq[i] = 0;
+    }
+
+    for (char c : s) {
+        if (isalpha(c)) {
+            c = tolower(c);
+            freq[c - 'a']++;
+        }
+    }
+
+    return freq;
 }
